@@ -35,7 +35,7 @@ const Work = () => (
         </h2>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {cases.map((c) => (
           <article key={c.title} className="group relative rounded-[2rem] overflow-hidden glass shadow-soft hover:shadow-card transition-all duration-500">
             <div className="aspect-[4/5] overflow-hidden relative">

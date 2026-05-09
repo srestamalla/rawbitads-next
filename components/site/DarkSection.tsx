@@ -28,14 +28,14 @@ const DarkSection = () => (
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/40 via-transparent to-transparent" />
-          <div className="absolute bottom-6 left-6 flex gap-4">
-            <div className="rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-3">
-              <p className="text-xs uppercase tracking-widest text-white/60 mb-1">Live CVR</p>
-              <p className="font-serif text-2xl text-white">3.42%</p>
+          <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 flex gap-2 sm:gap-4">
+            <div className="rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-3 py-2 sm:px-4 sm:py-3">
+              <p className="text-[9px] sm:text-xs uppercase tracking-widest text-white/60 mb-1">Live CVR</p>
+              <p className="font-serif text-xl sm:text-2xl text-white">3.42%</p>
             </div>
-            <div className="rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-3">
-              <p className="text-xs uppercase tracking-widest text-white/60 mb-1">Avg. CPC</p>
-              <p className="font-serif text-2xl text-white">$0.21</p>
+            <div className="rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-3 py-2 sm:px-4 sm:py-3">
+              <p className="text-[9px] sm:text-xs uppercase tracking-widest text-white/60 mb-1">Avg. CPC</p>
+              <p className="font-serif text-xl sm:text-2xl text-white">$0.21</p>
             </div>
           </div>
         </div>

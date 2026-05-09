@@ -280,7 +280,7 @@ export default function Formats() {
 
         {/* CTA */}
         <section className="container py-24 lg:py-32">
-          <div className="rounded-[3rem] glass-dark text-ink-foreground p-12 md:p-20 text-center relative overflow-hidden">
+          <div className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-20 text-center relative overflow-hidden">
             <div className="absolute -top-20 -right-20 size-80 rounded-full bg-pastel-pink/20 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 size-80 rounded-full bg-pastel-peach/20 blur-3xl" />
             <div className="relative">

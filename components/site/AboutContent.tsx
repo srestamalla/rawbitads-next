@@ -143,18 +143,18 @@ export default function AboutContent() {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 flex gap-3">
-                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-3">
-                      <p className="text-[10px] uppercase tracking-widest text-white/60 mb-1">Daily Impressions</p>
-                      <p className="font-serif text-2xl text-white">5B+</p>
+                  <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex gap-2 sm:gap-3">
+                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3">
+                      <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/60 mb-0.5">Daily Impr.</p>
+                      <p className="font-serif text-lg sm:text-2xl text-white">5B+</p>
                     </div>
-                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-3">
-                      <p className="text-[10px] uppercase tracking-widest text-white/60 mb-1">Active GEOs</p>
-                      <p className="font-serif text-2xl text-white">220+</p>
+                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3">
+                      <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/60 mb-0.5">Active GEOs</p>
+                      <p className="font-serif text-lg sm:text-2xl text-white">220+</p>
                     </div>
-                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-4 py-3">
-                      <p className="text-[10px] uppercase tracking-widest text-white/60 mb-1">Avg. ROI</p>
-                      <p className="font-serif text-2xl text-white">146%</p>
+                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3">
+                      <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/60 mb-0.5">Avg. ROI</p>
+                      <p className="font-serif text-lg sm:text-2xl text-white">146%</p>
                     </div>
                   </div>
                 </div>
@@ -356,7 +356,7 @@ export default function AboutContent() {
 
         {/* Final CTA */}
         <section className="container pb-24 lg:pb-32">
-          <div className="rounded-[3rem] glass-dark text-ink-foreground p-12 md:p-16 text-center relative overflow-hidden">
+          <div className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-16 text-center relative overflow-hidden">
             <div className="absolute -top-20 -right-20 size-80 rounded-full bg-pastel-pink/20 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 size-80 rounded-full bg-pastel-peach/20 blur-3xl" />
             <div className="relative">

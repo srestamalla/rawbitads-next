@@ -273,7 +273,7 @@ export default function Publishers() {
 
         {/* CTA */}
         <section className="container pb-24 lg:pb-32">
-          <div className="rounded-[3rem] glass-dark text-ink-foreground p-12 md:p-20 text-center relative overflow-hidden">
+          <div className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-20 text-center relative overflow-hidden">
             <div className="absolute -top-20 -right-20 size-80 rounded-full bg-cyan-400/15 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 size-80 rounded-full bg-indigo-400/15 blur-3xl" />
             <div className="relative">

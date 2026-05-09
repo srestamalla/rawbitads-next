@@ -39,17 +39,21 @@ const Footer = () => (
       <div>
         <p className="text-base font-semibold text-ink-foreground mb-5">Contact Us</p>
         <ul className="space-y-3 text-sm text-ink-foreground/65">
-          <li>Kathmandu, Nepal</li>
+          <li><span className="text-ink-foreground/40">Location:</span> Kathmandu, Nepal</li>
           <li>
+            <span className="text-ink-foreground/40">Email:</span>{" "}
             <a href="mailto:admin@rawbitads.com" className="hover:text-ink-foreground transition-colors">admin@rawbitads.com</a>
           </li>
           <li>
+            <span className="text-ink-foreground/40">Manager:</span>{" "}
             <a href="mailto:mark@rawbitads.com" className="hover:text-ink-foreground transition-colors">mark@rawbitads.com</a>
           </li>
           <li>
+            <span className="text-ink-foreground/40">Telegram:</span>{" "}
             <a href="https://t.me/rawbitads" target="_blank" rel="noopener noreferrer" className="hover:text-ink-foreground transition-colors">@rawbitads</a>
           </li>
           <li>
+            <span className="text-ink-foreground/40">Phone:</span>{" "}
             <a href="tel:+9779713911957" className="hover:text-ink-foreground transition-colors">+977 971-3911957</a>
           </li>
         </ul>
