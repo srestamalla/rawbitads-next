@@ -1,26 +1,148 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 215 33% 96%;
+    --foreground: 222 22% 12%;
+    --heading: 224 48% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 22% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 22% 12%;
+
+    --primary: 221 70% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 215 32% 92%;
+    --secondary-foreground: 222 22% 12%;
+
+    --muted: 215 22% 90%;
+    --muted-foreground: 220 12% 38%;
+
+    --accent: 214 28% 92%;
+    --accent-foreground: 222 22% 12%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 22% 82%;
+    --input: 215 22% 82%;
+    --ring: 221 70% 50%;
+
+    --ink: 222 42% 11%;
+    --ink-foreground: 210 40% 98%;
+    --cream: 215 33% 96%;
+    --pastel-pink: 193 88% 68%;
+    --pastel-mint: 176 65% 67%;
+    --pastel-peach: 223 86% 73%;
+    --pastel-lilac: 205 82% 78%;
+    --pastel-yellow: 188 92% 64%;
+
+    --radius: 1.25rem;
+
+    --shadow-soft: 0 10px 30px -18px hsl(220 40% 20% / 0.2);
+    --shadow-card: 0 24px 70px -28px hsl(220 44% 14% / 0.26);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "cv11";
+    background-image:
+      radial-gradient(circle at 10% 10%, hsl(193 100% 86% / 0.45), transparent 30%),
+      radial-gradient(circle at 88% 12%, hsl(223 100% 84% / 0.4), transparent 28%),
+      linear-gradient(180deg, hsl(213 34% 97%), hsl(218 30% 94%));
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif font-semibold tracking-tight;
+    color: hsl(var(--heading));
+    font-feature-settings: "ss01", "cv11";
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  .font-sans {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .glass {
+    background: hsl(0 0% 100% / 0.5);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid hsl(0 0% 100% / 0.38);
+    box-shadow: 0 12px 40px -28px hsl(220 40% 12% / 0.55);
+  }
+  .glass-strong {
+    background: hsl(0 0% 100% / 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsl(0 0% 100% / 0.58);
+    box-shadow: 0 18px 48px -30px hsl(220 40% 10% / 0.48);
+  }
+  .glass-dark {
+    background:
+      linear-gradient(160deg, hsl(233 84% 19% / 0.9), hsl(222 86% 24% / 0.86));
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid hsl(218 100% 70% / 0.38);
+    box-shadow:
+      0 20px 48px -30px hsl(235 95% 9% / 0.72),
+      inset 0 1px 0 hsl(215 100% 80% / 0.22),
+      inset 0 -1px 0 hsl(228 100% 80% / 0.12);
+    position: relative;
+  }
+  .glass-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 16% 14%, hsl(210 100% 68% / 0.16), transparent 34%),
+      radial-gradient(circle at 84% 88%, hsl(231 100% 72% / 0.14), transparent 38%);
+  }
+
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-float { animation: float-y 6s ease-in-out infinite; }
+  .animate-float-delayed { animation: float-y 7s ease-in-out infinite 1s; }
+  .animate-fade-up { animation: fade-up 0.8s ease-out both; }
 }
