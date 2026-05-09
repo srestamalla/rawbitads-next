@@ -29,8 +29,10 @@ const Header = () => {
           <Button variant="outline" className="rounded-full px-5 h-10">
             Sign In
           </Button>
-          <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-10 shadow-soft">
-            Sing Up
+          <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-10 shadow-soft">
+            <a href="https://rawbitads.adsrv.org/join" target="_blank" rel="noopener noreferrer">
+              Sign Up
+            </a>
           </Button>
         </div>
       </div>
