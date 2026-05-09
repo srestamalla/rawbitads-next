@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
+import { AnimateIn } from "@/components/AnimateIn";
+import { HoverCard } from "@/components/HoverCard";
 import {
   Bell,
   Monitor,
@@ -170,7 +172,7 @@ export default function Formats() {
           </div>
           <div className="container relative z-10 pt-16 pb-20 lg:pt-24 lg:pb-28">
             <div className="grid lg:grid-cols-12 gap-10 items-center">
-              <div className="lg:col-span-7">
+              <AnimateIn variant="left" className="lg:col-span-7">
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-6">// Ad Formats</p>
                 <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.04] max-w-3xl text-balance">
                   Eight formats. Every vertical. One dashboard.
@@ -179,21 +181,22 @@ export default function Formats() {
                   Push, in-page, pop, direct click, native, Telegram, calendar, and search. Pick the format that fits your offer and scale it with precision targeting and SmartBid optimization.
                 </p>
                 <Button asChild className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 shadow-soft">
-                  <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                  <a href="https://rawbitads.adsrv.org/login">
                     Start Advertising <ArrowUpRight className="ml-1 size-4" />
                   </a>
                 </Button>
-              </div>
+              </AnimateIn>
 
-              {/* Format chips visual */}
               <div className="lg:col-span-5 grid grid-cols-2 gap-3">
-                {formats.map(({ icon: Icon, title, iconBg, iconColor }) => (
-                  <div key={title} className="rounded-2xl glass p-4 flex items-center gap-3 shadow-soft">
-                    <div className={`size-9 rounded-xl flex items-center justify-center shrink-0 ${iconBg}`}>
-                      <Icon className={`size-4 ${iconColor}`} />
+                {formats.map(({ icon: Icon, title, iconBg, iconColor }, i) => (
+                  <AnimateIn key={title} variant="right" delay={i * 50}>
+                    <div className="rounded-2xl glass p-4 flex items-center gap-3 shadow-soft">
+                      <div className={`size-9 rounded-xl flex items-center justify-center shrink-0 ${iconBg}`}>
+                        <Icon className={`size-4 ${iconColor}`} />
+                      </div>
+                      <p className="text-sm font-medium leading-tight">{title}</p>
                     </div>
-                    <p className="text-sm font-medium leading-tight">{title}</p>
-                  </div>
+                  </AnimateIn>
                 ))}
               </div>
             </div>
@@ -203,38 +206,42 @@ export default function Formats() {
         {/* Format Cards */}
         <section className="container pb-24 lg:pb-32">
           <div className="grid md:grid-cols-2 gap-5">
-            {formats.map(({ icon: Icon, title, subtitle, desc, bestFor, bidding, stat, accent, iconColor, iconBg, tagBg, bidBg }) => (
-              <article key={title} className="rounded-[2rem] border border-primary/12 bg-white/70 backdrop-blur-xl shadow-soft overflow-hidden">
-                <div className={`bg-gradient-to-br ${accent} p-7 flex items-start justify-between gap-4`}>
-                  <div>
-                    <div className={`size-12 rounded-2xl ${iconBg} flex items-center justify-center mb-5`}>
-                      <Icon className={`size-6 ${iconColor}`} />
+            {formats.map(({ icon: Icon, title, subtitle, desc, bestFor, bidding, stat, accent, iconColor, iconBg, tagBg, bidBg }, i) => (
+              <AnimateIn key={title} delay={i * 60} className="h-full">
+                <HoverCard>
+                  <article className="rounded-[2rem] border border-primary/12 bg-white/70 backdrop-blur-xl shadow-soft overflow-hidden h-full">
+                    <div className={`bg-gradient-to-br ${accent} p-7 flex items-start justify-between gap-4`}>
+                      <div>
+                        <div className={`size-12 rounded-2xl ${iconBg} flex items-center justify-center mb-5`}>
+                          <Icon className={`size-6 ${iconColor}`} />
+                        </div>
+                        <h2 className="font-serif text-2xl mb-1">{title}</h2>
+                        <p className="text-xs text-muted-foreground">{subtitle}</p>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5 justify-end pt-1">
+                        {bidding.map((b) => (
+                          <span key={b} className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${bidBg}`}>{b}</span>
+                        ))}
+                      </div>
                     </div>
-                    <h2 className="font-serif text-2xl mb-1">{title}</h2>
-                    <p className="text-xs text-muted-foreground">{subtitle}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5 justify-end pt-1">
-                    {bidding.map((b) => (
-                      <span key={b} className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider ${bidBg}`}>{b}</span>
-                    ))}
-                  </div>
-                </div>
-                <div className="p-7">
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-6">{desc}</p>
-                  <div className="flex items-center gap-2 mb-5">
-                    <CheckCircle2 className="size-3.5 text-primary shrink-0" />
-                    <p className="text-xs font-medium text-foreground">{stat}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2.5">Best for</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {bestFor.map((tag) => (
-                        <span key={tag} className={`rounded-full border px-2.5 py-1 text-[11px] font-medium ${tagBg}`}>{tag}</span>
-                      ))}
+                    <div className="p-7">
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-6">{desc}</p>
+                      <div className="flex items-center gap-2 mb-5">
+                        <CheckCircle2 className="size-3.5 text-primary shrink-0" />
+                        <p className="text-xs font-medium text-foreground">{stat}</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2.5">Best for</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {bestFor.map((tag) => (
+                            <span key={tag} className={`rounded-full border px-2.5 py-1 text-[11px] font-medium ${tagBg}`}>{tag}</span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </article>
+                  </article>
+                </HoverCard>
+              </AnimateIn>
             ))}
           </div>
         </section>
@@ -243,7 +250,7 @@ export default function Formats() {
         <section className="glass-dark text-ink-foreground py-24 lg:py-32 rounded-t-[3rem]">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
+              <AnimateIn variant="left">
                 <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-5">// Precision Targeting</p>
                 <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance text-ink-foreground mb-7">
                   Every format comes with deep targeting built in.
@@ -252,26 +259,32 @@ export default function Formats() {
                   Stack targeting layers on any format to isolate the exact audience your offer converts on. Start broad, then narrow down to your best-performing combinations using live campaign data.
                 </p>
                 <div className="flex flex-wrap gap-2.5">
-                  {targeting.map((t) => (
-                    <span key={t} className="rounded-full border border-ink-foreground/20 px-4 py-2 text-sm text-ink-foreground/80">{t}</span>
+                  {targeting.map((t, i) => (
+                    <AnimateIn key={t} variant="up" delay={i * 50}>
+                      <span className="rounded-full border border-ink-foreground/20 px-4 py-2 text-sm text-ink-foreground/80">{t}</span>
+                    </AnimateIn>
                   ))}
                 </div>
-              </div>
+              </AnimateIn>
 
               <div className="space-y-4">
-                <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-6">// Bidding Models</p>
+                <AnimateIn variant="right">
+                  <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-6">// Bidding Models</p>
+                </AnimateIn>
                 {[
                   { model: "CPC", label: "Cost Per Click", desc: "Pay only when a user clicks your ad. Great for direct-response campaigns where click-through quality matters." },
                   { model: "CPM", label: "Cost Per Mille", desc: "Pay per 1,000 impressions. Ideal for brand exposure, retargeting, and high-volume formats like pop and push." },
                   { model: "CPA", label: "Cost Per Action", desc: "Pay only when a user completes a defined action: a sign-up, purchase, or install. Lowest risk, highest intent." },
-                ].map(({ model, label, desc }) => (
-                  <div key={model} className="rounded-2xl border border-ink-foreground/15 bg-ink-foreground/5 p-5 flex gap-5">
-                    <div className="rounded-xl bg-primary/20 px-3 py-2 text-sm font-bold text-primary self-start shrink-0">{model}</div>
-                    <div>
-                      <p className="font-medium text-ink-foreground mb-1">{label}</p>
-                      <p className="text-sm text-ink-foreground/60 leading-relaxed">{desc}</p>
+                ].map(({ model, label, desc }, i) => (
+                  <AnimateIn key={model} variant="right" delay={i * 80}>
+                    <div className="rounded-2xl border border-ink-foreground/15 bg-ink-foreground/5 p-5 flex gap-5">
+                      <div className="rounded-xl bg-primary/20 px-3 py-2 text-sm font-bold text-primary self-start shrink-0">{model}</div>
+                      <div>
+                        <p className="font-medium text-ink-foreground mb-1">{label}</p>
+                        <p className="text-sm text-ink-foreground/60 leading-relaxed">{desc}</p>
+                      </div>
                     </div>
-                  </div>
+                  </AnimateIn>
                 ))}
               </div>
             </div>
@@ -280,24 +293,26 @@ export default function Formats() {
 
         {/* CTA */}
         <section className="container py-24 lg:py-32">
-          <div className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-20 text-center relative overflow-hidden">
-            <div className="absolute -top-20 -right-20 size-80 rounded-full bg-pastel-pink/20 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 size-80 rounded-full bg-pastel-peach/20 blur-3xl" />
-            <div className="relative">
-              <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-6">// Get Started</p>
-              <h2 className="font-serif text-ink-foreground text-4xl md:text-5xl lg:text-6xl text-balance leading-[1.05] max-w-3xl mx-auto">
-                Pick your format and launch in under 10 minutes.
-              </h2>
-              <p className="mt-6 text-ink-foreground/70 max-w-lg mx-auto leading-relaxed">
-                All eight formats are available from one self-serve account. No minimum spend, no contracts. Just campaign performance you can measure.
-              </p>
-              <Button asChild className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-soft">
-                <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
-                  Create Your First Campaign <ArrowUpRight className="ml-1 size-4" />
-                </a>
-              </Button>
+          <AnimateIn>
+            <div className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-20 text-center relative overflow-hidden">
+              <div className="absolute -top-20 -right-20 size-80 rounded-full bg-pastel-pink/20 blur-3xl" />
+              <div className="absolute -bottom-20 -left-20 size-80 rounded-full bg-pastel-peach/20 blur-3xl" />
+              <div className="relative">
+                <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-6">// Get Started</p>
+                <h2 className="font-serif text-ink-foreground text-4xl md:text-5xl lg:text-6xl text-balance leading-[1.05] max-w-3xl mx-auto">
+                  Pick your format and launch in under 10 minutes.
+                </h2>
+                <p className="mt-6 text-ink-foreground/70 max-w-lg mx-auto leading-relaxed">
+                  All eight formats are available from one self-serve account. No minimum spend, no contracts. Just campaign performance you can measure.
+                </p>
+                <Button asChild className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-soft">
+                  <a href="https://rawbitads.adsrv.org/login">
+                    Create Your First Campaign <ArrowUpRight className="ml-1 size-4" />
+                  </a>
+                </Button>
+              </div>
             </div>
-          </div>
+          </AnimateIn>
         </section>
 
       </main>

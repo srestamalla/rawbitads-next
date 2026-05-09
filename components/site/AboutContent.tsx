@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
@@ -77,6 +78,9 @@ const useCountUp = (target: number, enabled: boolean, duration = 1400) => {
   return count;
 };
 
+const ease = "easeOut" as const;
+const spring = { type: "spring", stiffness: 300, damping: 20 } as const;
+
 export default function AboutContent() {
   const snapshotRef = useRef<HTMLElement | null>(null);
   const [startCounters, setStartCounters] = useState(false);
@@ -88,17 +92,10 @@ export default function AboutContent() {
   useEffect(() => {
     const section = snapshotRef.current;
     if (!section) return;
-
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStartCounters(true);
-          observer.disconnect();
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { setStartCounters(true); observer.disconnect(); } },
       { threshold: 0.35 },
     );
-
     observer.observe(section);
     return () => observer.disconnect();
   }, []);
@@ -118,7 +115,12 @@ export default function AboutContent() {
           </div>
           <div className="container relative z-10 pt-16 pb-0 lg:pt-24">
             <div className="grid lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-6 pb-20 lg:pb-28 animate-fade-up">
+              <motion.div
+                className="lg:col-span-6 pb-20 lg:pb-28"
+                initial={{ opacity: 0, x: -32 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.65, ease }}
+              >
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-6">// About Rawbitads</p>
                 <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.04] text-balance">
                   We built the platform we wished existed.
@@ -128,14 +130,19 @@ export default function AboutContent() {
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 shadow-soft">
-                    <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                    <a href="https://rawbitads.adsrv.org/login">
                       Create Campaign <ArrowUpRight className="ml-1 size-4" />
                     </a>
                   </Button>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="lg:col-span-6 self-end">
+              <motion.div
+                className="lg:col-span-6 self-end"
+                initial={{ opacity: 0, x: 32 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.65, ease, delay: 0.1 }}
+              >
                 <div className="relative rounded-t-[2rem] overflow-hidden aspect-[4/3]">
                   <img
                     src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80"
@@ -144,21 +151,25 @@ export default function AboutContent() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
                   <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex gap-2 sm:gap-3">
-                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3">
-                      <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/60 mb-0.5">Daily Impr.</p>
-                      <p className="font-serif text-lg sm:text-2xl text-white">5B+</p>
-                    </div>
-                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3">
-                      <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/60 mb-0.5">Active GEOs</p>
-                      <p className="font-serif text-lg sm:text-2xl text-white">220+</p>
-                    </div>
-                    <div className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3">
-                      <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/60 mb-0.5">Avg. ROI</p>
-                      <p className="font-serif text-lg sm:text-2xl text-white">146%</p>
-                    </div>
+                    {[
+                      { label: "Daily Impr.", value: "5B+" },
+                      { label: "Active GEOs", value: "220+" },
+                      { label: "Avg. ROI", value: "146%" },
+                    ].map(({ label, value }, i) => (
+                      <motion.div
+                        key={label}
+                        className="flex-1 rounded-xl bg-black/40 backdrop-blur-xl border border-white/10 px-2.5 py-2 sm:px-4 sm:py-3"
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 + i * 0.1, duration: 0.5, ease }}
+                      >
+                        <p className="text-[8px] sm:text-[10px] uppercase tracking-widest text-white/60 mb-0.5">{label}</p>
+                        <p className="font-serif text-lg sm:text-2xl text-white">{value}</p>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -167,26 +178,50 @@ export default function AboutContent() {
         <section className="py-24 lg:py-32">
           <div className="container">
             <div className="grid lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-5 order-2 lg:order-1 rounded-[2rem] overflow-hidden aspect-square relative">
+              <motion.div
+                className="lg:col-span-5 order-2 lg:order-1 rounded-[2rem] overflow-hidden aspect-square relative"
+                initial={{ opacity: 0, x: -32 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.65, ease }}
+              >
                 <img
                   src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80"
                   alt="Analytics and performance data"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-transparent" />
-                <div className="absolute top-6 left-6 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 px-5 py-4">
+                <motion.div
+                  className="absolute top-6 left-6 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 px-5 py-4"
+                  initial={{ opacity: 0, scale: 0.88 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3, duration: 0.5, ease }}
+                >
                   <p className="text-[10px] uppercase tracking-widest text-white/60 mb-2">Avg. CPC</p>
                   <p className="font-serif text-3xl text-white">$0.21</p>
                   <p className="text-[11px] text-white/50 mt-1">SmartBid enabled</p>
-                </div>
-                <div className="absolute bottom-6 right-6 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 px-5 py-4">
+                </motion.div>
+                <motion.div
+                  className="absolute bottom-6 right-6 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 px-5 py-4"
+                  initial={{ opacity: 0, scale: 0.88 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.45, duration: 0.5, ease }}
+                >
                   <p className="text-[10px] uppercase tracking-widest text-white/60 mb-2">Platform CVR</p>
                   <p className="font-serif text-3xl text-white">3.42%</p>
                   <p className="text-[11px] text-white/50 mt-1">Across all formats</p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
-              <div className="lg:col-span-7 order-1 lg:order-2">
+              <motion.div
+                className="lg:col-span-7 order-1 lg:order-2"
+                initial={{ opacity: 0, x: 32 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.65, ease }}
+              >
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-5">// Our Mission</p>
                 <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
                   Make performance advertising accessible to everyone who needs results.
@@ -203,8 +238,15 @@ export default function AboutContent() {
                     { label: "No minimum spend", desc: "Launch on any budget" },
                     { label: "Live reporting", desc: "See results as they happen" },
                     { label: "Direct traffic", desc: "No resellers, no middlemen" },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-start gap-3">
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + i * 0.08, duration: 0.45, ease }}
+                    >
                       <div className="size-5 rounded-full bg-primary/15 flex items-center justify-center shrink-0 mt-0.5">
                         <div className="size-2 rounded-full bg-primary" />
                       </div>
@@ -212,10 +254,10 @@ export default function AboutContent() {
                         <p className="text-sm font-medium">{item.label}</p>
                         <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -223,7 +265,13 @@ export default function AboutContent() {
         {/* Who We Serve */}
         <section className="glass-dark text-ink-foreground py-24 lg:py-32">
           <div className="container">
-            <div className="text-center max-w-3xl mx-auto mb-16">
+            <motion.div
+              className="text-center max-w-3xl mx-auto mb-16"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease }}
+            >
               <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-4">// Who We Serve</p>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance text-ink-foreground">
                 Built for advertisers and publishers alike.
@@ -231,60 +279,65 @@ export default function AboutContent() {
               <p className="mt-6 text-ink-foreground/70 leading-relaxed">
                 Whether you are scaling campaigns to hit CPA targets or monetizing traffic to grow payout revenue, Rawbitads has a dedicated solution for your side of the equation.
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid lg:grid-cols-2 gap-6">
-              {/* Advertisers */}
-              <div className="rounded-[2rem] border border-ink-foreground/15 bg-ink-foreground/5 backdrop-blur-xl p-8 md:p-10">
-                <div className="size-12 rounded-2xl bg-primary/20 flex items-center justify-center mb-8">
-                  <TrendingUp className="size-6 text-primary" />
-                </div>
-                <h3 className="font-serif text-3xl text-ink-foreground mb-3">For Advertisers</h3>
-                <p className="text-ink-foreground/70 leading-relaxed mb-8">
-                  Affiliates, performance agencies, direct brands, and growth teams. Anyone who needs quality traffic, specific GEOs, and a measurable path to conversion.
-                </p>
-                <ul className="space-y-4">
-                  {advertiserFeatures.map(({ icon: Icon, text }) => (
-                    <li key={text} className="flex items-center gap-3">
-                      <div className="size-8 rounded-xl bg-primary/15 flex items-center justify-center shrink-0">
-                        <Icon className="size-4 text-primary" />
-                      </div>
-                      <span className="text-sm text-ink-foreground/80">{text}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-6 shadow-soft">
-                  <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
-                    Start Advertising <ArrowUpRight className="ml-1 size-4" />
-                  </a>
-                </Button>
-              </div>
-
-              {/* Publishers */}
-              <div className="rounded-[2rem] border border-ink-foreground/15 bg-ink-foreground/5 backdrop-blur-xl p-8 md:p-10">
-                <div className="size-12 rounded-2xl bg-cyan-400/20 flex items-center justify-center mb-8">
-                  <DollarSign className="size-6 text-cyan-400" />
-                </div>
-                <h3 className="font-serif text-3xl text-ink-foreground mb-3">For Publishers</h3>
-                <p className="text-ink-foreground/70 leading-relaxed mb-8">
-                  Blog owners, app developers, site operators, and content networks who want to turn their traffic into consistent, growing revenue with minimal setup.
-                </p>
-                <ul className="space-y-4">
-                  {publisherFeatures.map(({ icon: Icon, text }) => (
-                    <li key={text} className="flex items-center gap-3">
-                      <div className="size-8 rounded-xl bg-cyan-400/15 flex items-center justify-center shrink-0">
-                        <Icon className="size-4 text-cyan-400" />
-                      </div>
-                      <span className="text-sm text-ink-foreground/80">{text}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild className="mt-10 rounded-full bg-cyan-500 text-white hover:bg-cyan-500/90 h-11 px-6 shadow-soft">
-                  <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
-                    Start Monetizing <ArrowUpRight className="ml-1 size-4" />
-                  </a>
-                </Button>
-              </div>
+              {[
+                {
+                  icon: TrendingUp, iconBg: "bg-primary/20", iconColor: "text-primary",
+                  title: "For Advertisers",
+                  subtitle: "Affiliates, performance agencies, direct brands, and growth teams. Anyone who needs quality traffic, specific GEOs, and a measurable path to conversion.",
+                  features: advertiserFeatures, featureBg: "bg-primary/15", featureIconColor: "text-primary",
+                  btnClass: "rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-6 shadow-soft",
+                  btnLabel: "Start Advertising", xInit: -32,
+                },
+                {
+                  icon: DollarSign, iconBg: "bg-cyan-400/20", iconColor: "text-cyan-400",
+                  title: "For Publishers",
+                  subtitle: "Blog owners, app developers, site operators, and content networks who want to turn their traffic into consistent, growing revenue with minimal setup.",
+                  features: publisherFeatures, featureBg: "bg-cyan-400/15", featureIconColor: "text-cyan-400",
+                  btnClass: "rounded-full bg-cyan-500 text-white hover:bg-cyan-500/90 h-11 px-6 shadow-soft",
+                  btnLabel: "Start Monetizing", xInit: 32,
+                },
+              ].map(({ icon: Icon, iconBg, iconColor, title, subtitle, features, featureBg, featureIconColor, btnClass, btnLabel, xInit }) => (
+                <motion.div
+                  key={title}
+                  className="rounded-[2rem] border border-ink-foreground/15 bg-ink-foreground/5 backdrop-blur-xl p-8 md:p-10"
+                  initial={{ opacity: 0, x: xInit }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.65, ease }}
+                  whileHover={{ y: -6, transition: spring }}
+                >
+                  <div className={`size-12 rounded-2xl ${iconBg} flex items-center justify-center mb-8`}>
+                    <Icon className={`size-6 ${iconColor}`} />
+                  </div>
+                  <h3 className="font-serif text-3xl text-ink-foreground mb-3">{title}</h3>
+                  <p className="text-ink-foreground/70 leading-relaxed mb-8">{subtitle}</p>
+                  <ul className="space-y-4">
+                    {features.map(({ icon: FIcon, text }, i) => (
+                      <motion.li
+                        key={text}
+                        className="flex items-center gap-3"
+                        initial={{ opacity: 0, x: -12 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 + i * 0.07, duration: 0.4, ease }}
+                      >
+                        <div className={`size-8 rounded-xl ${featureBg} flex items-center justify-center shrink-0`}>
+                          <FIcon className={`size-4 ${featureIconColor}`} />
+                        </div>
+                        <span className="text-sm text-ink-foreground/80">{text}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                  <Button asChild className={`mt-10 ${btnClass}`}>
+                    <a href="https://rawbitads.adsrv.org/login">
+                      {btnLabel} <ArrowUpRight className="ml-1 size-4" />
+                    </a>
+                  </Button>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -293,20 +346,40 @@ export default function AboutContent() {
         <section className="py-24 lg:py-32">
           <div className="container">
             <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
-              <div className="lg:col-span-7">
+              <motion.div
+                className="lg:col-span-7"
+                initial={{ opacity: 0, x: -32 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.65, ease }}
+              >
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">// What Drives Us</p>
                 <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
                   Four principles behind every product decision we make.
                 </h2>
-              </div>
-              <p className="lg:col-span-5 text-muted-foreground leading-relaxed">
+              </motion.div>
+              <motion.p
+                className="lg:col-span-5 text-muted-foreground leading-relaxed"
+                initial={{ opacity: 0, x: 32 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.65, ease }}
+              >
                 These aren&apos;t values on a wall. They&apos;re the constraints we use when deciding what to build, what to cut, and what to refuse.
-              </p>
+              </motion.p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {pillars.map(({ icon: Icon, title, desc }, i) => (
-                <article key={title} className="rounded-3xl glass p-7 hover:shadow-card hover:-translate-y-1 transition-all duration-300">
+                <motion.article
+                  key={title}
+                  className="rounded-3xl glass p-7"
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: i * 0.09, duration: 0.6, ease }}
+                  whileHover={{ y: -6, transition: spring }}
+                >
                   <div className="flex items-center justify-between mb-8">
                     <div className="size-11 rounded-2xl bg-secondary/70 flex items-center justify-center">
                       <Icon className="size-5" />
@@ -315,7 +388,7 @@ export default function AboutContent() {
                   </div>
                   <h3 className="font-serif text-2xl mb-3">{title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-                </article>
+                </motion.article>
               ))}
             </div>
           </div>
@@ -323,7 +396,13 @@ export default function AboutContent() {
 
         {/* Animated Stats */}
         <section ref={snapshotRef} className="container pb-24 lg:pb-32">
-          <div className="rounded-[2.5rem] overflow-hidden relative">
+          <motion.div
+            className="rounded-[2.5rem] overflow-hidden relative"
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease }}
+          >
             <img
               src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=80"
               alt="Global performance advertising team"
@@ -333,30 +412,37 @@ export default function AboutContent() {
             <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-14 lg:px-16">
               <p className="text-xs uppercase tracking-[0.25em] text-white/60 mb-8">// Company Snapshot</p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div>
-                  <p className="font-serif text-white text-5xl md:text-6xl leading-none">{impressionsCount}B+</p>
-                  <p className="text-xs uppercase tracking-widest text-white/60 mt-3">Daily Ad Impressions</p>
-                </div>
-                <div>
-                  <p className="font-serif text-white text-5xl md:text-6xl leading-none">{geosCount}+</p>
-                  <p className="text-xs uppercase tracking-widest text-white/60 mt-3">Supported GEOs</p>
-                </div>
-                <div>
-                  <p className="font-serif text-white text-5xl md:text-6xl leading-none">{formatsCount}</p>
-                  <p className="text-xs uppercase tracking-widest text-white/60 mt-3">Core Ad Formats</p>
-                </div>
-                <div>
-                  <p className="font-serif text-white text-5xl md:text-6xl leading-none">{roiCount}%</p>
-                  <p className="text-xs uppercase tracking-widest text-white/60 mt-3">Avg. Advertiser ROI</p>
-                </div>
+                {[
+                  { value: `${impressionsCount}B+`, label: "Daily Ad Impressions" },
+                  { value: `${geosCount}+`, label: "Supported GEOs" },
+                  { value: `${formatsCount}`, label: "Core Ad Formats" },
+                  { value: `${roiCount}%`, label: "Avg. Advertiser ROI" },
+                ].map(({ value, label }, i) => (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.5, ease }}
+                  >
+                    <p className="font-serif text-white text-5xl md:text-6xl leading-none">{value}</p>
+                    <p className="text-xs uppercase tracking-widest text-white/60 mt-3">{label}</p>
+                  </motion.div>
+                ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Final CTA */}
         <section className="container pb-24 lg:pb-32">
-          <div className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-16 text-center relative overflow-hidden">
+          <motion.div
+            className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-16 text-center relative overflow-hidden"
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease }}
+          >
             <div className="absolute -top-20 -right-20 size-80 rounded-full bg-pastel-pink/20 blur-3xl" />
             <div className="absolute -bottom-20 -left-20 size-80 rounded-full bg-pastel-peach/20 blur-3xl" />
             <div className="relative">
@@ -369,13 +455,13 @@ export default function AboutContent() {
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-soft">
-                  <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                  <a href="https://rawbitads.adsrv.org/login">
                     Create Campaign <ArrowUpRight className="ml-1 size-4" />
                   </a>
                 </Button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
       </main>

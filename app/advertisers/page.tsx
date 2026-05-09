@@ -3,6 +3,8 @@ import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { AnimateIn } from "@/components/AnimateIn";
+import { HoverCard } from "@/components/HoverCard";
 import {
   ArrowUpRight,
   TrendingUp,
@@ -144,7 +146,7 @@ export default function Advertisers() {
           </div>
           <div className="container relative z-10 pt-16 pb-20 lg:pt-24 lg:pb-28">
             <div className="grid lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-7">
+              <AnimateIn variant="left" className="lg:col-span-7">
                 <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-6">// For Advertisers</p>
                 <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.04] max-w-3xl text-balance">
                   Scale campaigns that actually hit your CPA.
@@ -154,7 +156,7 @@ export default function Advertisers() {
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
                   <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 shadow-soft">
-                    <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                    <a href="https://rawbitads.adsrv.org/login">
                       Start Advertising <ArrowUpRight className="ml-1 size-4" />
                     </a>
                   </Button>
@@ -164,7 +166,7 @@ export default function Advertisers() {
                     </a>
                   </Button>
                 </div>
-              </div>
+              </AnimateIn>
 
               <div className="lg:col-span-5 space-y-3">
                 {[
@@ -172,16 +174,18 @@ export default function Advertisers() {
                   { icon: MousePointerClick, label: "Ad formats", value: "8 formats" },
                   { icon: TrendingUp, label: "Avg. advertiser ROI", value: "146%" },
                   { icon: BarChart3, label: "Daily impressions", value: "5B+" },
-                ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="rounded-2xl glass p-5 flex items-center gap-5 shadow-soft">
-                    <div className="size-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                      <Icon className="size-5 text-primary" />
+                ].map(({ icon: Icon, label, value }, i) => (
+                  <AnimateIn key={label} variant="right" delay={i * 80}>
+                    <div className="rounded-2xl glass p-5 flex items-center gap-5 shadow-soft">
+                      <div className="size-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                        <Icon className="size-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-muted-foreground uppercase tracking-widest">{label}</p>
+                      </div>
+                      <p className="font-serif text-2xl">{value}</p>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-xs text-muted-foreground uppercase tracking-widest">{label}</p>
-                    </div>
-                    <p className="font-serif text-2xl">{value}</p>
-                  </div>
+                  </AnimateIn>
                 ))}
               </div>
             </div>
@@ -191,26 +195,32 @@ export default function Advertisers() {
         {/* Benefits */}
         <section className="container pb-24 lg:pb-32">
           <div className="grid lg:grid-cols-12 gap-10 items-end mb-14">
-            <div className="lg:col-span-7">
+            <AnimateIn variant="left" className="lg:col-span-7">
               <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">// Platform Advantages</p>
               <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance">
                 Built for performance teams who need results, not excuses.
               </h2>
-            </div>
-            <p className="lg:col-span-5 text-muted-foreground leading-relaxed">
-              Every feature is designed to give you more control over where your budget goes and clearer visibility into what's working.
-            </p>
+            </AnimateIn>
+            <AnimateIn variant="right" className="lg:col-span-5">
+              <p className="text-muted-foreground leading-relaxed">
+                Every feature is designed to give you more control over where your budget goes and clearer visibility into what's working.
+              </p>
+            </AnimateIn>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {benefits.map(({ icon: Icon, title, desc }) => (
-              <article key={title} className="rounded-3xl glass p-7">
-                <div className="size-11 rounded-2xl bg-primary/10 flex items-center justify-center mb-8">
-                  <Icon className="size-5 text-primary" />
-                </div>
-                <h3 className="font-serif text-2xl mb-3">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-              </article>
+            {benefits.map(({ icon: Icon, title, desc }, i) => (
+              <AnimateIn key={title} delay={i * 70} className="h-full">
+                <HoverCard>
+                  <article className="rounded-3xl glass p-7 h-full">
+                    <div className="size-11 rounded-2xl bg-primary/10 flex items-center justify-center mb-8">
+                      <Icon className="size-5 text-primary" />
+                    </div>
+                    <h3 className="font-serif text-2xl mb-3">{title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                  </article>
+                </HoverCard>
+              </AnimateIn>
             ))}
           </div>
         </section>
@@ -218,7 +228,7 @@ export default function Advertisers() {
         {/* Ad Formats Strip */}
         <section className="glass-dark text-ink-foreground py-24 lg:py-32 rounded-t-[3rem]">
           <div className="container">
-            <div className="text-center max-w-3xl mx-auto mb-14">
+            <AnimateIn className="text-center max-w-3xl mx-auto mb-14">
               <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-4">// Ad Formats</p>
               <h2 className="font-serif text-4xl md:text-5xl text-ink-foreground leading-[1.05] text-balance">
                 Eight formats for every vertical and traffic goal.
@@ -226,35 +236,37 @@ export default function Advertisers() {
               <p className="mt-5 text-ink-foreground/70 leading-relaxed">
                 All formats are available from one account. Mix and match based on your offer, vertical, and performance data.
               </p>
-            </div>
+            </AnimateIn>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-              {formats.map(({ name, desc, stat }) => (
-                <div key={name} className="rounded-2xl border border-ink-foreground/15 bg-ink-foreground/5 p-5">
-                  <p className="font-medium text-ink-foreground mb-1">{name}</p>
-                  <p className="text-xs text-ink-foreground/60 mb-4">{desc}</p>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="size-3 text-primary shrink-0" />
-                    <p className="text-xs text-primary font-medium">{stat}</p>
+              {formats.map(({ name, desc, stat }, i) => (
+                <AnimateIn key={name} delay={i * 60}>
+                  <div className="rounded-2xl border border-ink-foreground/15 bg-ink-foreground/5 p-5 h-full">
+                    <p className="font-medium text-ink-foreground mb-1">{name}</p>
+                    <p className="text-xs text-ink-foreground/60 mb-4">{desc}</p>
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="size-3 text-primary shrink-0" />
+                      <p className="text-xs text-primary font-medium">{stat}</p>
+                    </div>
                   </div>
-                </div>
+                </AnimateIn>
               ))}
             </div>
 
-            <div className="text-center">
+            <AnimateIn className="text-center">
               <Button asChild className="rounded-full h-11 px-7 bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft">
                 <a href="/formats">
                   See Full Format Details <ArrowUpRight className="ml-1 size-4" />
                 </a>
               </Button>
-            </div>
+            </AnimateIn>
           </div>
         </section>
 
         {/* Verticals */}
         <section className="container py-24 lg:py-32">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5">
+            <AnimateIn variant="left" className="lg:col-span-5">
               <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-5">// Verticals</p>
               <h2 className="font-serif text-4xl md:text-5xl leading-[1.05] text-balance">
                 Traffic that converts across every major vertical.
@@ -262,10 +274,12 @@ export default function Advertisers() {
               <p className="mt-6 text-muted-foreground leading-relaxed">
                 Rawbitads traffic is particularly strong for iGaming, finance, nutra, dating, and utilities. These are verticals where cost-per-lead and purchase intent matter most.
               </p>
-            </div>
+            </AnimateIn>
             <div className="lg:col-span-7 flex flex-wrap gap-3">
-              {verticals.map((v) => (
-                <span key={v} className="rounded-full glass border border-primary/15 px-5 py-2.5 text-sm font-medium shadow-soft">{v}</span>
+              {verticals.map((v, i) => (
+                <AnimateIn key={v} variant="up" delay={i * 60}>
+                  <span className="rounded-full glass border border-primary/15 px-5 py-2.5 text-sm font-medium shadow-soft">{v}</span>
+                </AnimateIn>
               ))}
             </div>
           </div>
@@ -273,76 +287,84 @@ export default function Advertisers() {
 
         {/* How It Works */}
         <section className="container pb-24 lg:pb-32">
-          <div className="text-center max-w-3xl mx-auto mb-14">
+          <AnimateIn className="text-center max-w-3xl mx-auto mb-14">
             <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">// Getting Started</p>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-balance leading-[1.05]">
               Launch your first campaign in four steps.
             </h2>
-          </div>
+          </AnimateIn>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {steps.map((step, i) => (
-              <article key={step.n} className="relative rounded-3xl glass p-7">
-                <p className="font-serif text-5xl text-muted-foreground/40">{step.n}</p>
-                <h3 className="font-serif text-xl mt-8 mb-3">{step.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-                {i < steps.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 -right-3 w-6 h-px bg-border" />
-                )}
-              </article>
+              <AnimateIn key={step.n} delay={i * 90} className="h-full">
+                <HoverCard>
+                  <article className="relative rounded-3xl glass p-7 h-full">
+                    <p className="font-serif text-5xl text-muted-foreground/40">{step.n}</p>
+                    <h3 className="font-serif text-xl mt-8 mb-3">{step.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                    {i < steps.length - 1 && (
+                      <div className="hidden lg:block absolute top-10 -right-3 w-6 h-px bg-border" />
+                    )}
+                  </article>
+                </HoverCard>
+              </AnimateIn>
             ))}
           </div>
-          <div className="text-center mt-10">
+          <AnimateIn className="text-center mt-10" delay={400}>
             <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-soft">
-              <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+              <a href="https://rawbitads.adsrv.org/login">
                 Create Your First Campaign <ArrowUpRight className="ml-1 size-4" />
               </a>
             </Button>
-          </div>
+          </AnimateIn>
         </section>
 
         {/* FAQ */}
         <section className="container pb-24 lg:pb-32">
-          <div className="text-center mb-12">
+          <AnimateIn className="text-center mb-12">
             <h2 className="font-serif text-4xl md:text-5xl">Advertiser FAQ</h2>
-          </div>
+          </AnimateIn>
           <div className="max-w-3xl mx-auto space-y-3">
             {faqs.map((item, idx) => (
-              <div key={item.q} className="rounded-xl border border-primary/12 bg-white/70 backdrop-blur-xl px-5 shadow-soft">
-                <Accordion type="single" collapsible>
-                  <AccordionItem value={`faq-${idx}`} className="border-none">
-                    <AccordionTrigger className="text-left text-base font-medium hover:no-underline py-5">
-                      {item.q}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5">
-                      {item.a}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
+              <AnimateIn key={item.q} delay={idx * 60}>
+                <div className="rounded-xl border border-primary/12 bg-white/70 backdrop-blur-xl px-5 shadow-soft">
+                  <Accordion type="single" collapsible>
+                    <AccordionItem value={`faq-${idx}`} className="border-none">
+                      <AccordionTrigger className="text-left text-base font-medium hover:no-underline py-5">
+                        {item.q}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5">
+                        {item.a}
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+                </div>
+              </AnimateIn>
             ))}
           </div>
         </section>
 
         {/* CTA */}
         <section className="container pb-24 lg:pb-32">
-          <div className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-20 text-center relative overflow-hidden">
-            <div className="absolute -top-20 -right-20 size-80 rounded-full bg-pastel-pink/20 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 size-80 rounded-full bg-pastel-peach/20 blur-3xl" />
-            <div className="relative">
-              <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-6">// Get Started</p>
-              <h2 className="font-serif text-ink-foreground text-4xl md:text-5xl lg:text-6xl text-balance leading-[1.05] max-w-3xl mx-auto">
-                Start running profitable campaigns today.
-              </h2>
-              <p className="mt-6 text-ink-foreground/70 max-w-lg mx-auto leading-relaxed">
-                No minimum spend. No contracts. No account manager bottleneck. Launch in under 10 minutes and let the data tell you what to scale.
-              </p>
-              <Button asChild className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-soft">
-                <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
-                  Create Your Account <ArrowUpRight className="ml-1 size-4" />
-                </a>
-              </Button>
+          <AnimateIn>
+            <div className="rounded-2xl md:rounded-[3rem] glass-dark text-ink-foreground p-8 sm:p-12 md:p-20 text-center relative overflow-hidden">
+              <div className="absolute -top-20 -right-20 size-80 rounded-full bg-pastel-pink/20 blur-3xl" />
+              <div className="absolute -bottom-20 -left-20 size-80 rounded-full bg-pastel-peach/20 blur-3xl" />
+              <div className="relative">
+                <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-6">// Get Started</p>
+                <h2 className="font-serif text-ink-foreground text-4xl md:text-5xl lg:text-6xl text-balance leading-[1.05] max-w-3xl mx-auto">
+                  Start running profitable campaigns today.
+                </h2>
+                <p className="mt-6 text-ink-foreground/70 max-w-lg mx-auto leading-relaxed">
+                  No minimum spend. No contracts. No account manager bottleneck. Launch in under 10 minutes and let the data tell you what to scale.
+                </p>
+                <Button asChild className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-soft">
+                  <a href="https://rawbitads.adsrv.org/login">
+                    Create Your Account <ArrowUpRight className="ml-1 size-4" />
+                  </a>
+                </Button>
+              </div>
             </div>
-          </div>
+          </AnimateIn>
         </section>
 
       </main>

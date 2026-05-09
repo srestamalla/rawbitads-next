@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 glass border-b border-white/35">
       <div className="container flex h-20 items-center justify-between">
-        <Link href="/" className="inline-flex items-center">
+        <Link href="/" className="inline-flex items-center cursor-pointer">
           <Image src="/assets/logo.png" alt="Rawbitads" width={144} height={36} className="h-9 w-auto" style={{ width: "auto" }} />
         </Link>
 
@@ -45,12 +45,12 @@ const Header = () => {
         {/* Desktop auth buttons */}
         <div className="hidden md:flex items-center gap-3">
           <Button asChild variant="outline" className="rounded-full px-5 h-10">
-            <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+            <a href="https://rawbitads.adsrv.org/login">
               Log In
             </a>
           </Button>
           <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-10 shadow-soft">
-            <a href="https://rawbitads.adsrv.org/join" target="_blank" rel="noopener noreferrer">
+            <a href="https://rawbitads.adsrv.org/join">
               Sign Up
             </a>
           </Button>
@@ -67,7 +67,7 @@ const Header = () => {
             <SheetContent side="left" className="w-72 flex flex-col pt-6" aria-describedby={undefined}>
               <VisuallyHidden><SheetTitle>Navigation</SheetTitle></VisuallyHidden>
               <div className="mb-6 px-4">
-                <Link href="/" onClick={() => setOpen(false)}>
+                <Link href="/" onClick={() => setOpen(false)} className="cursor-pointer">
                   <Image src="/assets/logo.png" alt="Rawbitads" width={144} height={36} className="h-9 w-auto" style={{ width: "auto" }} />
                 </Link>
               </div>
@@ -86,12 +86,12 @@ const Header = () => {
               </nav>
               <div className="mt-auto flex flex-col gap-3 pb-6">
                 <Button asChild variant="outline" className="rounded-full h-11 w-full">
-                  <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+                  <a href="https://rawbitads.adsrv.org/login" onClick={() => setOpen(false)}>
                     Log In
                   </a>
                 </Button>
                 <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 w-full shadow-soft">
-                  <a href="https://rawbitads.adsrv.org/join" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+                  <a href="https://rawbitads.adsrv.org/join" onClick={() => setOpen(false)}>
                     Sign Up
                   </a>
                 </Button>

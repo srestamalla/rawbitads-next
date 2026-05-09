@@ -1,10 +1,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { AnimateIn } from "@/components/AnimateIn";
 
 const faqItems = [
-  {
-    q: "What is the minimum budget to get started?",
-    a: "You can start with a small daily budget and scale once you find winning combinations. Most advertisers begin testing between $50 and $200 per day.",
-  },
   {
     q: "Which ad formats are available on Rawbit Ads?",
     a: "We support Telegram Ads, Push Ads, Pop Ads, Direct Click Ads, Native Ads, In-Page Ads, Calendar Ads, and Search Monetization.",
@@ -29,27 +26,29 @@ const faqItems = [
 
 const FAQ = () => (
   <section id="faq" className="container py-24 lg:py-32">
-    <div className="max-w-3xl mb-14">
+    <AnimateIn className="max-w-3xl mb-14">
       <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">// Frequently Asked Questions</p>
       <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-balance leading-[1.05]">
         Everything you need to launch with confidence.
       </h2>
-    </div>
+    </AnimateIn>
 
     <div className="grid lg:grid-cols-2 gap-5">
       {faqItems.map((item, idx) => (
-        <div key={item.q} className="rounded-2xl border border-primary/15 bg-white/65 backdrop-blur-xl px-5 shadow-soft">
-          <Accordion type="single" collapsible>
-            <AccordionItem value={`item-${idx}`} className="border-none">
-              <AccordionTrigger className="text-left text-xl font-serif hover:no-underline">
-                {item.q}
-              </AccordionTrigger>
-              <AccordionContent className="text-base text-muted-foreground leading-relaxed">
-                {item.a}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
+        <AnimateIn key={item.q} delay={idx * 70}>
+          <div className="rounded-2xl border border-primary/15 bg-white/65 backdrop-blur-xl px-5 shadow-soft hover:-translate-y-0.5 hover:shadow-card transition-all duration-300 h-full">
+            <Accordion type="single" collapsible>
+              <AccordionItem value={`item-${idx}`} className="border-none">
+                <AccordionTrigger className="text-left text-xl font-serif hover:no-underline">
+                  {item.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-base text-muted-foreground leading-relaxed">
+                  {item.a}
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </AnimateIn>
       ))}
     </div>
   </section>

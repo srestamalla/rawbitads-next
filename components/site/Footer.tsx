@@ -6,7 +6,7 @@ const Footer = () => (
 
       {/* Brand */}
       <div>
-        <Link href="/" className="inline-flex items-center">
+        <Link href="/" className="inline-flex items-center cursor-pointer">
           <img src="/assets/logo-white.png" alt="Rawbitads" className="h-9 w-auto" />
         </Link>
         <p className="text-sm text-ink-foreground/65 mt-5 leading-relaxed">
@@ -51,10 +51,6 @@ const Footer = () => (
           <li>
             <span className="text-ink-foreground/40">Telegram:</span>{" "}
             <a href="https://t.me/rawbitads" target="_blank" rel="noopener noreferrer" className="hover:text-ink-foreground transition-colors">@rawbitads</a>
-          </li>
-          <li>
-            <span className="text-ink-foreground/40">Phone:</span>{" "}
-            <a href="tel:+9779713911957" className="hover:text-ink-foreground transition-colors">+977 971-3911957</a>
           </li>
         </ul>
       </div>

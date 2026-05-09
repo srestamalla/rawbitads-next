@@ -27,13 +27,13 @@ const Hero = () => {
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 text-sm shadow-soft">
-                <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                <a href="https://rawbitads.adsrv.org/login">
                   Start Advertising
                   <ArrowUpRight className="ml-1 size-4" />
                 </a>
               </Button>
               <Button asChild variant="outline" className="rounded-full h-12 px-6 text-sm border-primary/25 bg-white/40 hover:bg-white/60">
-                <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                <a href="https://rawbitads.adsrv.org/login">
                   Start Monetizing
                 </a>
               </Button>
