@@ -97,11 +97,15 @@ export default function AboutContent() {
           Rawbitads helps advertisers, affiliates, and agencies launch campaigns across multiple formats with deeper targeting and smarter optimization workflows.
         </p>
         <div className="mt-10 flex flex-wrap gap-4">
-          <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 shadow-soft">
-            Create Campaign <ArrowUpRight className="ml-1 size-4" />
+          <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 shadow-soft">
+            <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+              Create Campaign <ArrowUpRight className="ml-1 size-4" />
+            </a>
           </Button>
-          <Button variant="outline" className="rounded-full h-12 px-7">
-            Contact Sales
+          <Button asChild variant="outline" className="rounded-full h-12 px-7">
+            <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+              Contact Sales
+            </a>
           </Button>
         </div>
         </div>

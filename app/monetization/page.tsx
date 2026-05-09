@@ -81,11 +81,10 @@ export default function Monetization() {
                 Monetize your traffic with a publisher-first platform built for reliable yield, transparent analytics, and scalable growth across modern ad formats.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-7">
-                  Start Monetizing
-                </Button>
-                <Button variant="outline" className="rounded-full h-11 px-6 border-white/35 bg-white/10 text-white hover:bg-white/20">
-                  Explore Formats
+                <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-7">
+                  <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                    Start Monetizing
+                  </a>
                 </Button>
               </div>
               <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -162,8 +161,10 @@ export default function Monetization() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-soft">
-              Create Publisher Account <ArrowUpRight className="ml-1 size-4" />
+            <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-soft">
+              <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                Create Publisher Account <ArrowUpRight className="ml-1 size-4" />
+              </a>
             </Button>
           </div>
         </section>
@@ -196,8 +197,10 @@ export default function Monetization() {
             <p className="mt-4 text-ink-foreground/70 max-w-3xl leading-relaxed">
               Access a dedicated publisher dashboard built to track earnings, manage placements, and optimize monetization with full visibility.
             </p>
-            <Button className="mt-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-7">
-              Login as Publisher
+            <Button asChild className="mt-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-7">
+              <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                Login as Publisher
+              </a>
             </Button>
           </div>
         </section>

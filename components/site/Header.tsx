@@ -26,8 +26,10 @@ const Header = () => {
           </Link>
         </nav>
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="rounded-full px-5 h-10">
-            Sign In
+          <Button asChild variant="outline" className="rounded-full px-5 h-10">
+            <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+              Log In
+            </a>
           </Button>
           <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-10 shadow-soft">
             <a href="https://rawbitads.adsrv.org/join" target="_blank" rel="noopener noreferrer">

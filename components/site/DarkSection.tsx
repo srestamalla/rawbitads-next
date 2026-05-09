@@ -37,8 +37,10 @@ const DarkSection = () => (
             </div>
           ))}
           <div className="sm:col-span-3 mt-4">
-            <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 shadow-soft">
-              Launch Your First Campaign <ArrowUpRight className="ml-1 size-4" />
+            <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 shadow-soft">
+              <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                Launch Your First Campaign <ArrowUpRight className="ml-1 size-4" />
+              </a>
             </Button>
           </div>
         </div>

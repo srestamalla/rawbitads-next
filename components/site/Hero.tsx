@@ -26,14 +26,16 @@ const Hero = () => {
               Launch high-converting campaigns across multiple ad formats, reach quality traffic in top GEOs, and optimize performance from one dashboard.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <Button className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 text-sm shadow-soft">
-                Start Advertising
-                <ArrowUpRight className="ml-1 size-4" />
+              <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 text-sm shadow-soft">
+                <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                  Start Advertising
+                  <ArrowUpRight className="ml-1 size-4" />
+                </a>
               </Button>
               <Button asChild variant="outline" className="rounded-full h-12 px-6 text-sm border-primary/25 bg-white/40 hover:bg-white/60">
-                <Link href="/contact">
-                Start Monetizing
-                </Link>
+                <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+                  Start Monetizing
+                </a>
               </Button>
             </div>
             <div className="mt-10 rounded-2xl border border-primary/20 bg-white/45 backdrop-blur-xl p-4 shadow-soft max-w-xl">

@@ -14,8 +14,10 @@ const FinalCTA = () => (
         <p className="mt-7 text-ink-foreground/70 max-w-xl mx-auto leading-relaxed">
           Create your first campaign in minutes, reach quality traffic worldwide, and optimize toward better ROI.
         </p>
-        <Button className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-8 text-base shadow-soft">
-          Create Campaign <ArrowUpRight className="ml-1 size-4" />
+        <Button asChild className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-8 text-base shadow-soft">
+          <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">
+            Create Campaign <ArrowUpRight className="ml-1 size-4" />
+          </a>
         </Button>
       </div>
     </div>
