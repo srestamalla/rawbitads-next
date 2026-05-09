@@ -1,8 +1,8 @@
 const steps = [
-  { n: "01", title: "Upload Creatives", desc: "Add your ad creatives, copy, and landing links directly in the platform." },
-  { n: "02", title: "Set Campaign", desc: "Choose objective, budget, bids, and ad formats for your launch strategy." },
-  { n: "03", title: "Target Precisely", desc: "Select GEO, device, OS, and audience filters to reach relevant traffic." },
-  { n: "04", title: "Optimize & Scale", desc: "Use live data, rules, and automation tools to improve ROI continuously." },
+  { n: "01", title: "Upload Creatives", desc: "Add ad copy, images, and landing URLs. All eight formats are supported. Creatives are reviewed and go live in minutes, not days." },
+  { n: "02", title: "Set Your Campaign", desc: "Pick your bidding model (CPC, CPM, or CPA), set a daily budget cap, and choose your ad format. Everything fits on a single setup screen." },
+  { n: "03", title: "Target Precisely", desc: "Start with your key GEOs, then layer device, OS, carrier, and browser filters. Narrow down to the segments where your CPA is lowest." },
+  { n: "04", title: "Optimize & Scale", desc: "SmartBid and zone-level blacklist rules adjust in real time. Once ROI turns positive, increase your budget and the system keeps optimizing as you scale." },
 ];
 
 const Process = () => (
@@ -10,7 +10,7 @@ const Process = () => (
     <div className="text-center mb-16">
       <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">// Simple Launch Flow</p>
       <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-balance">
-        From setup to profitable scaling
+        Four steps from signup to your first profitable campaign
       </h2>
     </div>
     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">

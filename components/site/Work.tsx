@@ -1,6 +1,6 @@
 const cases = [
   {
-    img: "/assets/work-realestate.jpg",
+    img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&q=80",
     category: "iGaming",
     title: "CPA-Driven Acquisition Campaign",
     metric: "+287%",
@@ -8,7 +8,7 @@ const cases = [
     accent: "bg-pastel-mint",
   },
   {
-    img: "/assets/work-education.jpg",
+    img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
     category: "Utilities",
     title: "Push Traffic Scaling Sprint",
     metric: "4.6×",
@@ -16,7 +16,7 @@ const cases = [
     accent: "bg-pastel-yellow",
   },
   {
-    img: "/assets/work-ecommerce.jpg",
+    img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80",
     category: "Finance",
     title: "Multiformat Conversion Funnel",
     metric: "31K",

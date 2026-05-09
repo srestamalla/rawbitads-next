@@ -3,32 +3,32 @@ import { CreditCard, LayoutDashboard, MonitorCheck, Radar, Rows3, Scale } from "
 const features = [
   {
     title: "Dashboard",
-    desc: "Track impressions, clicks, conversions, spend, and revenue in one clear control panel with live campaign updates.",
+    desc: "Clicks, impressions, conversions, spend, and eCPM update in real time. Spot a losing zone mid-day and reallocate budget before it costs you.",
     icon: LayoutDashboard,
   },
   {
     title: "Targeting",
-    desc: "Reach the right audience by GEO, device, OS, browser, and traffic source to improve quality and conversion outcomes.",
+    desc: "Stack GEO, device, OS, browser, carrier, and time-of-day filters on the same campaign. Narrow down to your most profitable segment without running separate campaigns.",
     icon: Radar,
   },
   {
     title: "Payments",
-    desc: "Top up and scale campaigns with reliable payment workflows built for advertisers and performance teams.",
+    desc: "Top up via card, wire, or crypto and campaigns go live immediately. No manual approvals, no billing delays, no minimum hold periods.",
     icon: CreditCard,
   },
   {
     title: "Environment",
-    desc: "Run and optimize campaigns across desktop and mobile inventory with stable delivery and transparent reporting.",
+    desc: "Separate bid controls for mobile, tablet, and desktop. Stop overpaying for environments that underperform for your vertical.",
     icon: MonitorCheck,
   },
   {
     title: "Ad Formats",
-    desc: "Use Telegram, Push, Pop, Direct Click, Native, In-Page, Calendar, and Search Monetization from one platform.",
+    desc: "Eight formats in one account: Push, In-Page, Pop, Direct Click, Native, Telegram Ads, Calendar Ads, and Search Monetization.",
     icon: Rows3,
   },
   {
     title: "Bidding",
-    desc: "Work with CPC, CPM, and CPA models plus smart optimization rules to balance scale and profitability.",
+    desc: "CPC, CPM, or CPA. Switch models any time. SmartBid reads live conversion data and adjusts bids automatically to hit your target cost per result.",
     icon: Scale,
   },
 ];
@@ -38,10 +38,10 @@ const Features = () => (
     <div className="container">
       <div className="text-center max-w-5xl mx-auto mb-14">
         <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05]">
-          Platform Features Built for Modern Advertisers
+          Every tool you need to scale campaigns profitably
         </h2>
         <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-          Rawbit Ads combines targeting depth, live analytics, flexible bidding, and multi-format delivery so performance teams can launch faster and optimize with confidence.
+          Rawbitads gives performance teams the targeting depth, live analytics, flexible bidding, and multi-format reach to launch fast and keep optimizing until every campaign is in the black.
         </p>
       </div>
 

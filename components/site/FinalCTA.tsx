@@ -9,10 +9,10 @@ const FinalCTA = () => (
       <div className="relative">
         <p className="text-xs uppercase tracking-[0.25em] text-ink-foreground/60 mb-6">// Start Now</p>
         <h2 className="font-serif text-ink-foreground text-4xl md:text-6xl lg:text-7xl text-balance leading-[1.05] max-w-4xl mx-auto">
-          Ready to launch campaigns that scale profitably?
+          Start running profitable campaigns today.
         </h2>
         <p className="mt-7 text-ink-foreground/70 max-w-xl mx-auto leading-relaxed">
-          Create your first campaign in minutes, reach quality traffic worldwide, and optimize toward better ROI.
+          Join advertisers and publishers growing with Rawbitads. Set up your first campaign in under 10 minutes. No agency, no middleman, just performance you can measure.
         </p>
         <Button asChild className="mt-10 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-13 px-8 text-base shadow-soft">
           <a href="https://rawbitads.adsrv.org/login" target="_blank" rel="noopener noreferrer">

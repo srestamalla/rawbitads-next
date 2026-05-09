@@ -1,98 +1,154 @@
 import type { Metadata } from "next";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
+import ContactForm from "@/components/site/ContactForm";
 import { Button } from "@/components/ui/button";
+import { Mail, MessageCircle, MapPin, Phone, ArrowUpRight, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Share your campaign goals and our team will get back to you with the best path to launch and scale your advertising.",
+    "Get in touch with the Rawbitads team for advertiser support, publisher inquiries, and partnership opportunities.",
   alternates: { canonical: "/contact" },
   openGraph: {
     url: "/contact",
     title: "Contact | Rawbitads",
     description:
-      "Share your campaign goals and our team will get back to you with the best path to launch and scale your advertising.",
+      "Get in touch with the Rawbitads team for advertiser support, publisher inquiries, and partnership opportunities.",
   },
 };
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+
+const quickContacts = [
+  { icon: Mail, label: "Email us", value: "admin@rawbitads.com", href: "mailto:admin@rawbitads.com" },
+  { icon: MessageCircle, label: "Telegram", value: "@rawbitads", href: "https://t.me/rawbitads" },
+  { icon: Phone, label: "Call us", value: "+977 971-3911957", href: "tel:+9779713911957" },
+];
+
+const allContacts = [
+  { icon: Mail, label: "Support", value: "admin@rawbitads.com", href: "mailto:admin@rawbitads.com" },
+  { icon: Mail, label: "Account Manager", value: "mark@rawbitads.com", href: "mailto:mark@rawbitads.com" },
+  { icon: MessageCircle, label: "Telegram", value: "@rawbitads", href: "https://t.me/rawbitads" },
+  { icon: Phone, label: "Phone", value: "+977 971-3911957", href: "tel:+9779713911957" },
+];
 
 export default function Contact() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <section className="container pt-16 pb-12 lg:pt-24 lg:pb-16">
-          <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-6">// Contact</p>
-          <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.04] max-w-4xl text-balance">
-            Let&apos;s talk about your next campaign
-          </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Share your goals and our team will get back to you with the best path to launch and scale.
-          </p>
-        </section>
 
-        <section className="container pb-24 lg:pb-32">
-          <div className="max-w-3xl rounded-[2rem] glass p-8 md:p-10 shadow-card">
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="fullName">Full Name</Label>
-                    <Input id="fullName" name="fullName" placeholder="Enter your name" />
+        {/* Hero */}
+        <section className="relative overflow-hidden bg-[#071730] py-24 lg:py-32">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -top-20 left-1/4 h-72 w-72 rounded-full bg-sky-500/20 blur-3xl" />
+            <div className="absolute top-10 right-16 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl" />
+            <div className="absolute bottom-0 left-1/2 h-64 w-64 rounded-full bg-violet-500/15 blur-3xl" />
+          </div>
+          <div className="container relative z-10 text-center">
+            <p className="text-xs uppercase tracking-[0.25em] text-white/60 mb-6">// Contact</p>
+            <h1 className="font-serif text-white text-5xl md:text-6xl lg:text-7xl leading-[1.04] max-w-4xl mx-auto text-balance">
+              Let&apos;s build something that converts.
+            </h1>
+            <p className="mt-7 text-white/70 text-lg max-w-xl mx-auto leading-relaxed">
+              Whether you&apos;re launching your first campaign or scaling a publisher network, we&apos;re here to help.
+            </p>
+
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+              {quickContacts.map(({ icon: Icon, label, value, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/8 backdrop-blur-xl px-5 py-3.5 hover:bg-white/15 transition-colors group"
+                >
+                  <div className="size-9 rounded-xl bg-white/10 flex items-center justify-center shrink-0">
+                    <Icon className="size-4 text-white" />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="companyName">Company</Label>
-                    <Input id="companyName" name="companyName" placeholder="Your company name" />
+                  <div className="text-left">
+                    <p className="text-[10px] uppercase tracking-widest text-white/50 mb-0.5">{label}</p>
+                    <p className="text-sm font-medium text-white group-hover:text-primary transition-colors">{value}</p>
                   </div>
-                </div>
+                </a>
+              ))}
+            </div>
 
-                <div className="grid md:grid-cols-2 gap-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" name="email" type="email" placeholder="you@company.com" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="budget">Monthly Budget</Label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      defaultValue=""
-                    >
-                      <option value="" disabled>Select budget range</option>
-                      <option value="under-2k">Under $2,000</option>
-                      <option value="2k-10k">$2,000 - $10,000</option>
-                      <option value="10k-30k">$10,000 - $30,000</option>
-                      <option value="30k-plus">$30,000+</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="formats">Interested Ad Formats</Label>
-                  <Input id="formats" name="formats" placeholder="e.g. Push Ads, Native Ads, Telegram Ads" />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Tell us about your campaign goals, GEOs, and target CPA."
-                    className="min-h-[130px]"
-                  />
-                </div>
-
-                <div className="pt-2">
-                  <Button type="submit" className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-7 shadow-soft">
-                    Send Message
-                  </Button>
-                </div>
-              </form>
+            <div className="mt-8 flex items-center justify-center gap-2 text-white/40 text-xs">
+              <Clock className="size-3.5" />
+              <span>We typically respond within a few hours during business days</span>
+            </div>
           </div>
         </section>
+
+        {/* Contact Cards + Form */}
+        <section className="container py-24 lg:py-32">
+          <div className="grid lg:grid-cols-12 gap-8 items-start">
+
+            {/* Left — Contact Details */}
+            <div className="lg:col-span-5 space-y-5">
+
+              <div className="rounded-[1.75rem] glass p-7 shadow-soft">
+                <h2 className="font-serif text-2xl mb-2">Get in touch</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                  Reach us through any of the channels below and we will get back to you as soon as possible.
+                </p>
+                <div className="space-y-3">
+                  {allContacts.map(({ icon: Icon, label, value, href }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target={href.startsWith("http") ? "_blank" : undefined}
+                      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      className="flex items-center gap-3 group"
+                    >
+                      <div className="size-9 rounded-xl bg-secondary/70 flex items-center justify-center shrink-0">
+                        <Icon className="size-4 text-muted-foreground" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] uppercase tracking-widest text-muted-foreground">{label}</p>
+                        <p className="text-sm font-medium group-hover:text-primary transition-colors">{value}</p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Office */}
+              <div className="rounded-[1.75rem] glass p-7 shadow-soft">
+                <div className="flex items-start gap-4">
+                  <div className="size-9 rounded-xl bg-secondary/70 flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPin className="size-4 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Office</p>
+                    <p className="font-medium">Kathmandu, Nepal</p>
+                    <p className="text-sm text-muted-foreground mt-1">Rawbit Ads Pvt. Ltd.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick CTA */}
+              <div className="rounded-[1.75rem] glass-dark text-ink-foreground p-7">
+                <p className="font-serif text-xl mb-2 text-ink-foreground">Ready to get started?</p>
+                <p className="text-sm text-ink-foreground/70 leading-relaxed mb-5">
+                  Create your account and launch your first campaign in under 10 minutes. No sales call needed.
+                </p>
+                <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6 shadow-soft text-sm">
+                  <a href="https://rawbitads.adsrv.org/join" target="_blank" rel="noopener noreferrer">
+                    Sign Up Free <ArrowUpRight className="ml-1 size-3.5" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right — Form */}
+            <div className="lg:col-span-7">
+              <ContactForm />
+            </div>
+
+          </div>
+        </section>
+
       </main>
       <Footer />
     </div>

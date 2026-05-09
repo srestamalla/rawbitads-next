@@ -1,5 +1,15 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { NavLink } from "@/components/NavLink";
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/advertisers", label: "Advertisers" },
+  { href: "/publishers", label: "Publishers" },
+  { href: "/formats", label: "Ad Formats" },
+  { href: "/contact", label: "Contact" },
+];
 
 const Header = () => {
   return (
@@ -8,22 +18,17 @@ const Header = () => {
         <Link href="/" className="inline-flex items-center">
           <img src="/assets/logo.png" alt="Rawbitads" className="h-9 w-auto" />
         </Link>
-        <nav className="hidden md:flex items-center gap-9 text-sm text-muted-foreground">
-          <Link href="/" className="hover:text-foreground transition-colors">
-            Home
-          </Link>
-          <Link href="/about" className="hover:text-foreground transition-colors">
-            About
-          </Link>
-          <Link href="/formats" className="hover:text-foreground transition-colors">
-            Ad Formats
-          </Link>
-          <Link href="/monetization" className="hover:text-foreground transition-colors">
-            Monetization
-          </Link>
-          <Link href="/contact" className="hover:text-foreground transition-colors">
-            Contact
-          </Link>
+        <nav className="hidden md:flex items-center gap-9 text-sm">
+          {navLinks.map(({ href, label }) => (
+            <NavLink
+              key={href}
+              href={href}
+              className="relative text-muted-foreground hover:text-foreground transition-colors py-1"
+              activeClassName="text-foreground font-medium after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:rounded-full after:bg-primary"
+            >
+              {label}
+            </NavLink>
+          ))}
         </nav>
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" className="rounded-full px-5 h-10">

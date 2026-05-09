@@ -20,10 +20,10 @@ const Hero = () => {
               Global Self-Serve Ad Platform
             </div>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.02] text-balance">
-              Where Scale Meets Performance.
+              Stop Wasting Budget. Start Scaling Profitably.
             </h1>
             <p className="mt-7 text-lg text-muted-foreground max-w-xl leading-relaxed">
-              Launch high-converting campaigns across multiple ad formats, reach quality traffic in top GEOs, and optimize performance from one dashboard.
+              Run push, native, pop, Telegram, and direct click ads across 220+ GEOs. Verified traffic, real-time SmartBid optimization, and transparent CPA reporting from one self-serve dashboard.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button asChild className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-7 text-sm shadow-soft">

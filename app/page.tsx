@@ -23,6 +23,7 @@ import DarkSection from "@/components/site/DarkSection";
 import Process from "@/components/site/Process";
 import Testimonials from "@/components/site/Testimonials";
 import FinalCTA from "@/components/site/FinalCTA";
+import Work from "@/components/site/Work";
 import Footer from "@/components/site/Footer";
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
         <Hero />
         <Services />
         <DarkSection />
+        <Work />
         <Process />
         <Testimonials />
         <Features />

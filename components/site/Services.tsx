@@ -1,12 +1,12 @@
 import { Megaphone, Sparkles, Share2, Users, LayoutTemplate, Bot, ArrowUpRight } from "lucide-react";
 
 const services = [
-  { icon: Megaphone, title: "Push & In-Page Ads", desc: "Launch high-volume push campaigns with precise targeting and fast optimization cycles." },
-  { icon: Sparkles, title: "Native & Display Ads", desc: "Reach intent-driven users with ad formats designed for smooth, contextual engagement." },
-  { icon: Share2, title: "Direct Click & Pop Traffic", desc: "Scale quickly with conversion-focused traffic sources and flexible CPC/CPM bidding." },
-  { icon: Users, title: "Advanced Targeting", desc: "Segment by GEO, device, OS, browser, carrier, and audience behavior to improve quality." },
-  { icon: LayoutTemplate, title: "Performance Optimization", desc: "Use automation modes and smart rules to cut waste and move budget to winners." },
-  { icon: Bot, title: "Self-Serve Control Panel", desc: "Create campaigns, monitor KPIs, and iterate creatives in one streamlined dashboard." },
+  { icon: Megaphone, title: "Push & In-Page Ads", desc: "Reach opted-in subscribers the moment they open their browser. High intent, low CPCs, and fast volume. Push traffic that converts without the premium price tag." },
+  { icon: Sparkles, title: "Native & Display Ads", desc: "Blend into premium content feeds with ads that match the look and feel of the page. Lower bounce rates, higher trust, and stronger engagement versus traditional display." },
+  { icon: Share2, title: "Direct Click & Pop Traffic", desc: "Capture full-page attention with pop and direct click formats. Particularly effective for iGaming, finance, utilities, and subscription verticals that need volume fast." },
+  { icon: Users, title: "Advanced Targeting", desc: "Layer GEO, device, OS, browser, carrier, and time-of-day filters to isolate your best-converting segments and stop wasting budget on traffic that never buys." },
+  { icon: LayoutTemplate, title: "SmartBid Optimization", desc: "Set your target CPA and let SmartBid auto-adjust bids and blacklist underperforming zones in real time. Your budget moves toward winners automatically." },
+  { icon: Bot, title: "Self-Serve Control Panel", desc: "Launch in under 10 minutes. Adjust bids, swap creatives, review live ROI, and scale winners without waiting on an account manager or submitting a ticket." },
 ];
 
 const Services = () => (
@@ -15,11 +15,11 @@ const Services = () => (
       <div>
         <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground mb-4">// Ad Formats & Features</p>
         <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl max-w-3xl text-balance leading-[1.05]">
-          Built to help you launch fast and scale profitably.
+          Eight formats. One platform. Measurable ROI.
         </h2>
       </div>
       <p className="text-muted-foreground max-w-sm">
-        From traffic discovery to optimization, every tool is designed for measurable campaign performance.
+        From first-click to conversion, every channel and tool is built to drive performance you can actually measure.
       </p>
     </div>
 
